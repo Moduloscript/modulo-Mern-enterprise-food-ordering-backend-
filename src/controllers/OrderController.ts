@@ -36,6 +36,7 @@ const stripeWebhookHandler = async (req: Request, res: Response) => {
     console.log(error);
     return res.status(400).send(`Webhook error: ${error.message}`);
   }
+
   if (event.type === "checkout.session.completed") {
     const order = await Order.findById(event.data.object.metadata?.orderId);
 
